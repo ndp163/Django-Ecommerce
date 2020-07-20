@@ -3,15 +3,16 @@ from django.views import View
 from django.http import HttpResponse, HttpResponseRedirect
 from home.models import Setting, ContactForm, ContactMessage
 from django.contrib import messages
-
+from product.models import Category, Product
 # Create your views here.
 
 
 class Index(View):
     def get(self, request):
         setting = Setting.objects.get(pk=1)
+        category = Category.objects.all()
         page = 'home'
-        context = {'setting':setting, 'page':page}
+        context = {'setting':setting, 'page':page, 'category':category}
         return render(request, 'index.htm', context)
 
 
@@ -42,3 +43,10 @@ class ContactUs(View):
             messages.success(request,"Your message has been sent. Thank you for your message!")
             return HttpResponseRedirect('/contact')
         return HttpResponse("Wrong!")
+
+
+class ProductCategory(View):
+    def get(self, request, id, slug):
+        setting = Setting.objects.get(pk=1)
+        products = Product.objects.filter(category_id=id)
+        return HttpResponse(products)

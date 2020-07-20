@@ -26,6 +26,7 @@ urlpatterns = [
     path('about/', views.AboutUs.as_view(), name='about'),
     path('contact/', views.ContactUs.as_view(), name='contact'),
     path('product/', include('product.urls')),
+    path('category/<int:id>/<slug:slug>/', views.ProductCategory.as_view(), name='ProductCategory'),
     
 ]
 

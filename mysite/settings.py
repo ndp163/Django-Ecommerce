@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'product.apps.ProductConfig',
     'ckeditor',
+    'mptt',
 ]
 
 MIDDLEWARE = [
