@@ -1,7 +1,9 @@
 {% extends 'homebase.htm' %}
-{% block title %} My Home Page Title {% endblock %}
-{% block description %} My Home Page Description {% endblock %}
-{% block keywords %} My Home Page Keywords {% endblock %}
+
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
 
 {% block sidebar %} {% include 'sidebar.htm' %} {% endblock %}
 {% block slider %} {% include 'slider.htm' %} {% endblock %}
