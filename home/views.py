@@ -12,7 +12,16 @@ class Index(View):
         setting = Setting.objects.get(pk=1)
         category = Category.objects.all()
         page = 'home'
-        context = {'setting':setting, 'page':page, 'category':category}
+        productsSlider = Product.objects.all().order_by('id')[:4]   # first 4 products
+        latestProducts = Product.objects.all().order_by('-id')[:4]  # last 4 products
+        pickedProducts = Product.objects.all().order_by('?')[:4]    # random selected 4 products
+
+        context = { 'setting':setting, 
+                    'page':page, 
+                    'category':category, 
+                    'productsSlider':productsSlider,
+                    'latestProducts':latestProducts,
+                    'pickedProducts':pickedProducts }
         return render(request, 'index.htm', context)
 
 

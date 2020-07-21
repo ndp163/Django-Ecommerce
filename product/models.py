@@ -25,15 +25,15 @@ class Category(MPTTModel):
     def __str__(self):
         return self.title
 
-    def __str__(self):                           # __str__ method elaborated later in
-        full_path = [self.title]                  # post.  use __unicode__ in place of
+    def __str__(self):                          # __str__ method elaborated later in
+        full_path = [self.title]                # post.  use __unicode__ in place of
         k = self.parent
         while k is not None:
             full_path.append(k.title)
             k = k.parent
         return ' / '.join(full_path[::-1])
  
-    def get_absolute_url(self):
+    def get_absolute_url(self):                 # auto create slug
         return reverse("category_detail", kwargs={"slug": self.slug})
 
     class MPTTMeta:
