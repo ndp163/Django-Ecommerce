@@ -56,6 +56,8 @@ class ContactUs(View):
 
 class ProductCategory(View):
     def get(self, request, id, slug):
-        setting = Setting.objects.get(pk=1)
+        category = Category.objects.all()
         products = Product.objects.filter(category_id=id)
-        return HttpResponse(products)
+        context = { 'products':products,
+                    'category':category }
+        return render(request, 'category_products.htm', context)
